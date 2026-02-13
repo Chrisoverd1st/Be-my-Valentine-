@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paula ❤️ Be My Valentine</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: url('myphoto.jpg') no-repeat center center/cover;
+      color: white;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.65);
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      margin-top: 120px;
+    }
+
+    h1 {
+      font-size: 28px;
+      padding: 0 15px;
+    }
+
+    #countdown {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin: 10px;
+    }
+
+    #yes {
+      background-color: #ff3366;
+      color: white;
+    }
+
+    #no {
+      position: absolute;
+      background-color: grey;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="content">
+  <h1>Paula ❤️ Will You Be My Valentine?</h1>
+  <div id="countdown"></div>
+
+  <button id="yes" onclick="yesClick()">Yes 💖</button>
+  <button id="no" onmouseover="moveNo()">No 🙈</button>
+</div>
+
+<script>
+  let yesBtn = document.getElementById("yes");
+  let noBtn = document.getElementById("no");
+
+  const targetDate = new Date("Feb 14, 2026 00:00:00").getTime();
+  const countdown = document.getElementById("countdown");
+
+  setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML =
+      "Countdown to Our Valentine 💘: " +
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+  }, 1000);
+
+  function moveNo() {
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    let currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize = (currentSize + 3) + "px";
+  }
+
+  function yesClick() {
+    document.body.innerHTML = `
+      <div style="background:url('myphoto.jpg') center/cover no-repeat;
+                  height:100vh;
+                  display:flex;
+                  justify-content:center;
+                  align-items:center;
+                  text-align:center;
+                  color:white;
+                  background-color:rgba(0,0,0,0.7);
+                  background-blend-mode:darken;">
+        <h1>
+          Paula Said YES! 💍❤️<br><br>
+          Forever Starts Now 🥰<br><br>
+          I Love You Paula 💖
+        </h1>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
